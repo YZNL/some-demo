@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-title" content="智邮普创" />
+    <meta name="csrf-param" content="authenticity_token" />
+	<meta name="csrf-token" content="SSPN3G7wSbMc5bXXCYOKhdXWjyRFwxosqmk4OeRw+umt+7SNikmmoWKWekGPhw4i++X0iiDZVQbi6uP+xkRJZA==" />
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<title>尔雅选课</title>
+	<style type="text/css">
+		/*清除默认边距*/
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		li{
+			list-style: none;
+			width: 49%;
+			padding-top: 0.5em;
+			padding-left: 2%;
+		}
+		/*首部导航栏样式*/
+		#header {
+			display:flex;
+			align-items: center;
+			vertical-align: center;
+			flex-wrap: wrap;
+			align-content: center;
+			width: 100%;
+			height: 5em;
+		}
+		/*设置返回按钮样式*/
+		#back{
+			font-size: 3em;
+			color: black;
+			margin-left: 0.8em;
+		}
+		/*设置字体大小 颜色 边距*/
+		#CJcheck{
+			color: black;
+			margin-left: 2em;
+		}
+		#XFcheck{
+			color: black;
+			margin-left: 2em;
+		}
+		#EYcheck{
+			margin-left: 2em;
+		}
+		#XFneed{
+			background-color: rgb(242,242,242);
+			border-radius: 0.5em;
+			height: 11em;
+		}
+		.input{
+			display: inline-block;
+			background-color: rgb(242,242,242);
+			width: 1em;
+		}
+		/*所需学分css*/
+		#XFneed li{
+			float: left;
+			margin-left: 1%;
+		}
+		#findclass{
+			height: 2.5em;
+			margin-top: 1.5em;
+		}
+		#findclass a{
+			margin-left: 2em;		
+		}
+		#XFhave{
+			background-color: rgb(242,242,242);
+			border-radius: 0.5em;
+			height: 11em;
+		}
+		#XFhave li{
+			float: left;
+			margin-left: 1%;
+		}
+		#buttom{
+			text-align: center;
+			margin-top: 1em;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<a href="" id="back"><</a>
+		<a href=""  class="aa" id="CJcheck"><strong>期末成绩</strong></a>
+		<a href=""  class="aa" id="XFcheck"><strong>学分查询</strong></a>
+		<a href=""  class="aa" id="EYcheck"><strong>尔雅选课</strong></a>
+	</div>
+	<div id="XFneed">
+		<p><img src="">&nbsp;&nbsp;<strong>所需学分：</strong></p>
+		<ul>
+			<li>创新创业（不计）：<p class="input"></p>分</li>
+			<li>心理健康：<p class="input"></p>分</li>
+			<li>公共艺术：<p class="input"></p>分</li>
+			<li>语言文化：<p class="input"></p>分</li>
+			<li>经济与社会：<p class="input"></p>分</li>
+			<li>科学与技术：<p class="input"></p></li>
+			<li>职业规划与就业指导：<p class="input"></p>分</li>
+		</ul>
+	</div>
+	<div id="findclass">
+		<a href=""><strong>>>进入课程类别查询</strong></a>
+	</div>
+	<div id="XFhave">
+		<p><img src="">&nbsp;&nbsp;<strong>当前以修学分：</strong></p>
+		<ul>
+			<li>创新创业：<p class="input"></p>分</li>
+			<li>心理健康：<p class="input"></p>分</li>
+			<li>公共艺术：<p class="input"></p>分</li>
+			<li>语言文化：<p class="input"></p>分</li>
+			<li>经济与社会：<p class="input"></p>分</li>
+			<li>科学与技术：<p class="input"></p>分</li>
+			<li>职业规划与就业指导：<p class="input"></p>分</li>
+		</ul>
+	</div>
+	<div id="buttom">
+		<p style="font-size: 0.8em;">系统将在选课考试前推出提醒</p>
+		<p>最终成绩以教务系统查询结果为准。</p>
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var need = document.getElementById('XFneed').getElementsByTagName('li').getElementsByTagName('input');
+		var have = document.getElementById('XFhave').getElementsByTagName('li').getElementsByTagName('input');
+		function needscore(){
+			var xhr = XMLhttpRequest();
+			xhr.open("post","url");//注意这里的URL
+				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhr.send(dataA);
+			xhr.onreadystatechange = function(){
+				if (xhr.readyState == 4&&xhr.status==200){
+					var dataGet = JSON.parse(xhr.responseText);
+					for(var i = 0;i<need.length;i++){
+						need.value = dataGet.
+					}
+				}
+			}
+		}
+		function havescore(){
+			var xhr = XMLhttpRequest();
+			xhr.open("post","url");//注意这里的URL
+				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhr.send(dataA);
+			xhr.onreadystatechange = function(){
+				if (xhr.readyState == 4&&xhr.status==200){
+					var dataGet = JSON.parse(xhr.responseText);
+					for(var i = 0;i<have.length;i++){
+						have.value = dataGet.
+					}
+				}
+			}
+		}
+	}
+</script>
+</html>

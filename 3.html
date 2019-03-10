@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-title" content="智邮普创" />
+    <meta name="csrf-param" content="authenticity_token" />
+	<meta name="csrf-token" content="SSPN3G7wSbMc5bXXCYOKhdXWjyRFwxosqmk4OeRw+umt+7SNikmmoWKWekGPhw4i++X0iiDZVQbi6uP+xkRJZA==" />
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<title>期末成绩</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		 }
+		/*首部导航栏样式*/
+		#header {
+			display:flex;
+			align-items: center;
+			vertical-align: center;
+			flex-wrap: wrap;
+			align-content: center;
+			width: 100%;
+			height: 5em;
+		}
+		#back{
+			font-size: 3em;
+			color: black;
+			margin-left: 0.8em;
+		}
+		#CJcheck{
+			color: blue;
+			margin-left: 2em;
+		}
+		#XFcheck{
+			color: black;
+			margin-left: 2em;
+		}
+		#EYcheck{
+			color: black;
+			margin-left: 2em;
+		}
+		#checkbtn{
+			width: 100%;
+		}
+		.KC{
+			width: 30%;
+			margin-left: 5%;
+		} 
+		.LX{
+			width: 50%;
+			margin-left: 8%;
+		}
+		select{
+			padding: 3%;
+			float: left;
+			border-radius: 5%;
+		}
+		option{
+			text-align: center;
+			border-radius: 5%;
+		}
+		#CH_div{
+			background-color: rgba(0,0,0,0.7);
+			position: relative;
+			margin-top: -5em;
+			border-radius: 0.5em;
+			display: none;
+		}
+		#btna{
+			position: absolute;
+			background-color: white;
+			margin-top: 10em;
+			height: 10.8em;
+			width: 100%;
+			padding: 0.1em;
+			border-radius: 0.5em;
+		}
+		#btn p{
+			font-size: 1.2em;
+		}
+		#LX_div{
+			background-color: rgba(0,0,0,0.7);
+			position: relative;
+			margin-top: -5em;
+			display: none;
+		}
+		#term{
+			position: absolute;
+			background-color: white;
+			margin-top: 10em;
+			height: 16em;
+			width: 100%;
+			padding: 0.1em;
+			border-radius: 0.5em;
+		}
+		#CH_div button{
+			position: relative;
+			width: 40%;
+			height: 2em;
+			margin: 0;
+			float: left;
+			margin-left: 5%;
+			margin-top: 0.1em;
+		}
+		.choice{
+			font-size: 1.2em;
+			clear: left;
+		}
+		#view{
+			width: 100%;
+			/*margin-top: 3em;*/
+			position: relative;
+			font-size: 1.3em;
+
+		}
+		#first{
+			position: relative;
+			margin-top: -3em;
+		}
+		#second{
+			position: relative;
+			margin-top: -2em;
+		}
+		.left{
+			float: left;
+			display: block;
+			text-align: center;
+			width: 50%;
+		}
+		.right{
+			float: left;
+			display: block;
+			text-align: center;
+			margin-left: 20%;
+			width: 20%;
+			color: white;
+			background-color: rgb(0,153,255);
+			border-radius: 0.5em;
+		}
+		.H{
+			width: 100%;
+			position: relative;
+			margin-top: -0.5em;
+		}
+		.place{
+			position: relative;
+			margin-top:-1em; 
+		}
+		.CTdiv{
+			border-bottom: 2px solid black;
+			position: relative;
+			margin-top: 3em;
+			width: 100%;
+		}
+		tr:nth-child(2n){
+			text-align: left;
+		}
+		tr:nth-child(2n+1){
+			text-align: right;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<a href="" id="back"><</a>
+		<a href=""  class="aa" id="CJcheck"><strong>期末成绩</strong></a>
+		<a href=""  class="aa" id="XFcheck"><strong>学分查询</strong></a>
+		<a href=""  class="aa" id="EYcheck"><strong>尔雅选课</strong></a>
+	</div>
+	<div id="checkbtn">
+		<select class="KC">
+			<option>全部课程</option>
+		</select>
+		<select class="LX">
+			<option>2018-2019第二学期</option>
+		</select>
+	</div>
+	<div id="LX_div">
+		<div id="btna">
+			<button class="btn btn-default btn-lg btn-block" id="allclass">全部课程</button>
+			<button class="btn btn-default btn-lg btn-block" id="mustclass">必修课</button>
+			<button class="btn btn-default btn-lg btn-block" id="partclass">选修课</button>
+		</div>
+	</div>
+	<div id="CH_div">
+		<div id="term">
+			<p class="choice"><strong>学年选择</strong></p>
+			<hr class="H"> 
+			<button class="btn btn-default btn-lg btn-block" id="a">
+				<p id="ap">~</p>
+			</button>
+			<button class="btn btn-default btn-lg btn-block" id="b">
+				<p id="bp">~</p>
+			</button>
+			<button class="btn btn-default btn-lg btn-block" id="c">
+				<p id="cp">~</p>
+			</button>
+			<button class="btn btn-default btn-lg btn-block" id="d">
+				<p id="dp">~</p>
+			</button>
+			<p class="choice"><strong>学期选择</strong></p>
+			<hr class="H">
+			<button class="btn btn-default btn-lg btn-block" id="first">第一学期</button>
+			<button class="btn btn-default btn-lg btn-block" id="second">第二学期</button>
+		</div>
+	</div>
+	<div id="view">
+		
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		// 这有一个数组存按钮
+		var textArray = ["全部课程","必修课","选修课"];
+		var termArray = [" "," "," "," ","第一学期","第二学期"];
+		// function getCookie(name){
+		// 	var strcookie = document.cookie;//获取cookie字符串
+		// 	var arrcookie = strcookie.split("; ");//分割
+		// 	//遍历匹配
+		// 	for ( var i = 0; i < arrcookie.length; i++) {
+		// 		var arr = arrcookie[i].split("=");
+		// 		if (arr[0] == name){
+		// 			return arr[1];
+		// 		}
+		// 		else{
+				// yearArray[0] = arr[year];//这里是入学年份
+		// 		}
+		// 	}
+		// 	return "";
+		// } 
+		// 设置高度为全屏高度year
+		// var yearArray[0] = arr[year];
+		// 	   yearArray[1] = yearArray[0]++;
+		//     yearArray[2] = yearArray[1]++;
+		//     yearArray[3] = yearArray[2]++;
+		var cHdiv = document.getElementById('CH_div');
+		cHdiv.style.height = parseInt(document.documentElement.clientHeight) + 'px';
+		var lXdiv = document.getElementById('LX_div');
+		lXdiv.style.height = parseInt(document.documentElement.clientHeight) + 'px';
+		var kc = document.getElementsByClassName('KC')[0];
+		var lx = document.getElementsByClassName('LX')[0];
+		var termbutton = document.getElementById('term').getElementsByTagName('button');
+		// 设置按钮变量
+		var buttonGet = document.getElementsByTagName('button'); 
+		var fir = document.getElementById('first');
+		var sec = document.getElementById('second');
+		// 点击函数，出现选择框（两个选择框）
+		kc.onclick = function(){
+			lXdiv.style.display = "block";
+			kc.style.display = "none"
+		}
+		lx.onclick = function(){
+			cHdiv.style.display = "block";
+			lx.style.display = "none"
+		}
+		text_a = function (i){
+	    	kc.style.display = "block";
+	    	lXdiv.style.display = "none";
+	    	kc.setAttribute("class","KC");
+	    	kc.getElementsByTagName('option')[0].innerHTML = textArray[i];
+		}
+
+		for(let i=0; i<3; i++){
+			buttonGet[i].onclick = function(){
+				text_a(i);
+			}
+		}
+
+		var a = document.getElementById('a'),
+			b = document.getElementById('b'),
+			c = document.getElementById('c'),
+			d = document.getElementById('d');
+			// ap = document.getElementById('ap'),
+			// bp = document.getElementById('bp'),
+			// cp = document.getElementById('cp'),
+			// dp = document.getElementById('dp');
+		var Pplace = document.getElementById('term').getElementsByTagName('p');
+		// for(var i=1 ; i<Pplace.length ; i++){
+		// 	Pplace[i].innerHTML = yearArray[0] + '~' + yearArray[0]++;
+		// }
+
+		// 点击变化  进行不同的查询
+		var tempYear = [];
+		a.onclick = function(){
+			tempYear = yearArray[0];
+			var str = "";
+			return tempYear;
+			
+		}
+		b.onclick = function(){
+			   tempYear = yearArray[1];
+				var str = "";
+				return tempYear;
+		}
+		c.onclick = function(){
+			var str = "";
+			tempYear = yearArray[2];
+			return tempYear;
+		}
+		d.onclick = function(){
+			var str = "";
+			tempYear = yearArray[3];
+			return tempYear;
+		}
+		// for(let i = 4; i<6; i++){
+		// 	termbutton[i].onclick = buttonValue(i);
+		// }
+
+
+		// 点完学期后更新按钮的值，同时把调用ajax函数
+		fir.onclick = function(){
+			let i=1
+			var temp = tempYear;
+  			lx.style.display = "block";
+  			cHdiv.style.display = "none";
+  			lx.getElementsByTagName('option')[0].innerHTML = temp + '~' + temp++ + termArray[i] ;
+			ajax();
+		}
+		sec.onclick = function(){
+			let i=2
+			var temp = tempYear;
+  			lx.style.display = "block";
+  			cHdiv.style.display = "none";
+  			lx.getElementsByTagName('option')[0].innerHTML = temp + '~' + temp++ + termArray[i] ;
+			ajax();
+		}
+  		function ajax(){
+  		var dataA = "year" + '=' + 2017 + '&' + "term" + '=' + 1;
+			var xhr = new XMLHttpRequest();
+			xhr.open("post","http://cjcx.xupt.org/api/study");//注意这里的URL
+				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			xhr.send(dataA);
+			xhr.onreadystatechange = function(){
+				if (xhr.readyState == 4&&xhr.status==200){
+					var dataGet = JSON.parse(xhr.responseText);
+					console.log(dataGet.data)
+					createDiv(dataGet.data.failCourse.dataList.length)
+				}
+			}
+		} 
+  		// view模块   用于写生成获取的那些东西
+  		var vew = document.getElementById('view')
+  		function createDiv(len){
+  			var ddv = document.createElement("div");
+  			vew.appendChild(ddv);
+  			ddv.setAttribute("class","CTdiv")
+  			// ddv.className = 'CTdiv';
+  			var ddvG = document.getElementsByClassName("CTdiv")[0];console.log(1)
+  			for(let i = 0;i<len;i++){
+  				var table = document.createElement("table");  
+        	
+        	ddvG.appendChild(table);
+        	for(let i = 0;i < 3; i++){
+        		console.log(2)
+            	var trNode = table.insertRow();
+           	    for(let j = 0;j < 2;j++){
+                	var tdNode = trNode.insertCell();
+            	}
+        	}
+    		table.tBodies[0].rows[0].innerHTML = 0
+    		table.tBodies[0].rows[0].innerHTML = 0
+    		table.tBodies[0].rows[1].cells[0].innerHTML = 0
+    		table.tBodies[0].rows[1].cells[1].innerHTML = "学分:" +0
+    		table.tBodies[0].rows[2].cells[0].innerHTML = "卷面成绩:" + 0
+    		table.tBodies[0].rows[2].cells[1].innerHTML = "平时成绩:" + 0
+  			}
+  		} 
+  		// function creat(){
+        	
+    //    	 	for(var i = 0;i < 3; i++){
+    //         	var trNode = table.insertRow();
+    //        	    for(var j = 0;j < 2;j++){
+    //             	var tdNode = trNode.insertCell();
+    //         	}
+    //     	}
+    // 		table.tBodies[0].rows[0].innerHTML = 0
+    // 		table.tBodies[0].rows[0].innerHTML = 0
+    // 		table.tBodies[0].rows[1].cells[0].innerHTML = 0
+    // 		table.tBodies[0].rows[1].cells[1].innerHTML = "学分:" +0
+    // 		table.tBodies[0].rows[2].cells[0].innerHTML = "卷面成绩:" + 0
+    // 		table.tBodies[0].rows[2].cells[1].innerHTML = "平时成绩:" + 0
+    //     	return table;
+    // 	}//creat
+	    function teSum(){
+	   		var sumdiv = document.createElement("div");
+	   	 	sumdiv.innerHTML = "该学期的总绩点"+0
+	   	 
+	    }
+	    // creat();
+	}
+</script>
+</html>

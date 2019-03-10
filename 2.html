@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-title" content="智邮普创" />
+    <meta name="csrf-param" content="authenticity_token" />
+	<meta name="csrf-token" content="SSPN3G7wSbMc5bXXCYOKhdXWjyRFwxosqmk4OeRw+umt+7SNikmmoWKWekGPhw4i++X0iiDZVQbi6uP+xkRJZA==" />
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<title>学分查询</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		 }
+		/*首部导航栏样式*/
+		#header {
+			display:flex;
+			align-items: center;
+			vertical-align: center;
+			flex-wrap: wrap;
+			align-content: center;
+			width: 100%;
+			height: 5em;
+		}
+		/*设置返回按钮样式*/
+		#back{
+			font-size: 3em;
+			color: black;
+			margin-left: 0.8em;
+		}
+		/*设置字体大小 颜色 边距*/
+		#CJcheck{
+			color: black;
+			margin-left: 2em;
+		}
+		#XFcheck{
+			color: blue;
+			margin-left: 2em;
+		}
+		#EYcheck{
+			color: black;
+			margin-left: 2em;
+		}
+		#checkbtn{
+			width: 100%;
+		}
+		.KC{
+			margin-left: 5%;
+		} 
+		.LX{
+			margin-left: 8%;
+		}
+		select{
+			width: 40%;
+			padding: 3%;
+			float: left;
+		}
+		option{
+			text-align: center;
+		}
+		#CH_div{
+			background-color: rgba(0,0,0,0.7);
+			position: relative;
+			margin-top: -5em;
+			border-radius: 0.5em;
+			display: none;
+		}
+		#btn{
+			position: absolute;
+			background-color: white;
+			margin-top: 10em;
+			height: 11.5em;
+			width: 100%;
+			padding: 0.1em;
+			border-radius: 0.5em;
+		}
+		#btn p{
+			font-size: 1.2em;
+		}
+		#LX_div{
+			background-color: rgba(0,0,0,0.7);
+			position: relative;
+			margin-top: -8.1em;
+			display: none;
+		}
+		#btna{
+			position: absolute;
+			background-color: white;
+			margin-top: 10em;
+			height: 8.5em;
+			width: 100%;
+			padding: 0.1em;
+			border-radius: 0.5em;
+		}
+		button{
+			width: 100%;
+			height: 2em;
+			margin: 0;
+		}
+		#view{
+			width: 100%;
+			margin-top: 3em;
+			position: relative;
+			font-size: 1.3em;
+			display: block;
+		}
+		.left{
+			float: left;
+			display: block;
+			text-align: center;
+			width: 50%;
+		}
+		.right{
+			float: left;
+			display: block;
+			text-align: center;
+			margin-left: 20%;
+			width: 20%;
+			color: white;
+			background-color: rgb(0,153,255);
+			border-radius: 0.5em;
+		}
+		.H{
+			width: 100%;
+			position: relative;
+			margin-top: 1em;
+		}
+		.place{
+			position: relative;
+			margin-top:-1em; 
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<a href="" id="back"><</a>
+		<a href=""  class="aa" id="CJcheck"><strong>期末成绩</strong></a>
+		<a href=""  class="aa" id="XFcheck"><strong>学分查询</strong></a>
+		<a href=""  class="aa" id="EYcheck"><strong>尔雅选课</strong></a>
+	</div>
+	<div id="checkbtn">
+		<select class="KC">
+			<option>全部课程</option>
+		</select>
+		<select class="LX">
+			<option>全部课程</option>
+		</select>
+	</div>
+	<div id="CH_div">
+		<div id="btn"> 
+			<button class="btn btn-default btn-lg btn-block" id="all"><strong>全部课程√</strong></button>
+			<button class="btn btn-default btn-lg btn-block" id="pass"><strong>已通过课程</strong></button>
+			<button class="btn btn-default btn-lg btn-block" id="buPass"><strong>补考通过的课程</strong></button>
+			<button class="btn btn-default btn-lg btn-block" id="noPass"><strong>未通过的课程</strong></button>
+		</div>
+	</div>
+	<div id="LX_div">
+		<div id="btna">
+			<button class="btn btn-default btn-lg btn-block" id="allclass">全部课程√</button>
+			<button class="btn btn-default btn-lg btn-block" id="mustclass">必修课</button>
+			<button class="btn btn-default btn-lg btn-block" id="partclass">选修课</button>
+		</div>
+	</div>
+	<div id="view">
+			<p class="left"><strong>总学分</strong></p>
+			<p class="right" id="sum">12.0</p>
+			<hr class="H">
+		<div class="place" id="Place">
+			<p class="left"><strong>高等数学</strong><br>必修课</p>
+			<p class="right"></p>
+			<hr class="H">
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		textArray = ["全部课程","已通过课程","补考通过的课程","未通过的课程","全部课程","必修课","选修课"];
+		functionArray = [];
+		// 设置高度为全屏高度
+		var cHdiv = document.getElementById('CH_div');
+		cHdiv.style.height = parseInt(document.documentElement.clientHeight) + 'px';
+		var lXdiv = document.getElementById('LX_div');
+		lXdiv.style.height = parseInt(document.documentElement.clientHeight) + 'px';
+		var kc = document.getElementsByClassName('KC')[0];
+		var lx = document.getElementsByClassName('LX')[0];
+		var vie = document.getElementById('view');
+		// 设置按钮变量
+		var buttonGet = document.getElementsByTagName('button'); 
+		var pass = document.getElementById('pass');
+		pass.value = "已通过课程";
+		var all = document.getElementById('all');
+		all.value = "全部课程";
+		var bupass = document.getElementById('buPass');
+		bupass.value = "补考通过的课程";
+		var nopass = document.getElementById('noPass');
+		nopass.value = "未通过的课程";
+		var allclass = document.getElementById('allclass');
+		allclass.value = "全部课程";
+		var mustclass = document.getElementById('mustclass');
+		mustclass.value = "必修课";
+		var partclass = document.getElementById('partclass');
+		partclass.value = "选修课";
+		// 点击函数，出现选择框（两个选择框）
+		kc.onclick = function(){
+			kc.style.display = "none"
+			cHdiv.style.display = "block";
+			vie.style.display = "none";
+
+		}
+		lx.onclick = function(){
+			lx.style.display = "none";
+			lXdiv.style.display = "block";
+		}
+	    text_a = function (i){
+	    		    	kc.style.display = "block";
+	    	cHdiv.style.display = "none";
+	    	kc.setAttribute("class","KC");
+	    	
+	    	kc.getElementsByTagName('option')[0].innerHTML = textArray[i];
+	    	
+		}
+		text_b = function(i) {
+	    	lx.style.display = "block";
+	    	lXdiv.style.display = "none";
+	    	lx.setAttribute("class","LX");
+	    	lx.getElementsByTagName('option')[0].innerHTML = textArray[i];
+		}
+		for(let i=0 ; i < buttonGet.length-3 ;i++){
+			buttonGet[i].onclick = function(){
+				text_a(i);
+			}
+		}
+		for(let i=buttonGet.length-3 ; i < buttonGet.length ;i++){
+			buttonGet[i].onclick = function(){
+				text_b(i);
+			}
+		}
+		var Place = document.getElementById("Place");
+		function createTable(){
+			var pa = document.createElement("p");
+			var pb = document.createElement("p");
+			Place.appendChild(pa);
+			Place.appendChild(pb);
+			pa.innerHTML = somethig;
+		}
+		// function ajax(dataA){
+		// 	var xhr = XMLhttpRequest();
+		// 	xhr.open("post","url");//注意这里的URL
+		// 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		// 	xhr.send(dataA);
+		// 	xhr.onreadystatechange = function(){
+		// 		if (xhr.readyState == 4&&xhr.status==200){
+		// 			var dataGet = JSON.parse(xhr.responseText);
+		// 			for(var i = 0;i<need.length;i++){
+		// 				need.value = dataGet.
+		// 			}
+		// 		}
+		// 	}
+		// }
+		all.onclick = function(){
+			var dataA = this.value + '&' + lx.value + '=' 
+			// ajax();
+			console.log(dataA);
+
+		}
+		pass.onclick = function(){
+			console.log(this.value);
+		}
+		// function create(){
+			
+		// }
+
+	}
+</script>
+</html>
